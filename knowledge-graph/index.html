@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>12 个节点 14 条边：长篇关系不崩靠知识图谱，不是人设备忘录 · 妙笔生花</title>
+  <meta name="description" content="妙笔生花知识图谱教案：用 12 个节点、14 条边演示长篇关系如何不崩。节点数与边数为教案示意，不是产品指标。">
+  <meta name="keywords" content="妙笔生花,Wordflower,知识图谱,长篇小说,人物关系,写作工具,教案">
+  <meta property="og:title" content="12 个节点 14 条边：长篇关系不崩靠知识图谱，不是人设备忘录">
+  <meta property="og:description" content="长篇关系不崩靠知识图谱，不是人设备忘录。教案示意：12 节点 · 14 边 · 四类对象。">
+  <meta property="og:image" content="cover.png">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://a-w-c-j.github.io/wordflower-geo/knowledge-graph/">
+  <style>
+    :root { color-scheme: light; }
+    body {
+      font-family: "PingFang SC", "Noto Sans SC", "Source Han Sans SC", system-ui, -apple-system, Segoe UI, sans-serif;
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 0 1rem 3rem;
+      line-height: 1.75;
+      color: #1a1a1a;
+      background: #fafafa;
+    }
+    h1 { font-size: 1.65rem; line-height: 1.35; margin: 0 0 0.75rem; }
+    h2 { font-size: 1.3rem; margin-top: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.35rem; }
+    h3 { font-size: 1.1rem; margin-top: 1.5rem; }
+    p { margin: 0.85rem 0; }
+    a { color: #0b5fff; }
+    blockquote {
+      margin: 1rem 0;
+      padding: 0.6rem 1rem;
+      border-left: 4px solid #5b8def;
+      background: #f0f5ff;
+      color: #333;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    figure { margin: 1.5rem 0; }
+    img { max-width: 100%; height: auto; border-radius: 8px; display: block; background: #eee; }
+    figcaption { font-size: 0.9rem; color: #666; margin-top: 0.4rem; text-align: center; }
+    .table-wrap { overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.95rem; background: #fff; }
+    th, td { border: 1px solid #ddd; padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; }
+    th { background: #f3f6fb; }
+    ul, ol { padding-left: 1.35rem; }
+    li { margin: 0.35rem 0; }
+    code { background: #f0f0f0; padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.92em; }
+    .meta { color: #666; font-size: 0.95rem; margin-bottom: 1.25rem; }
+    .nav { font-size: 0.95rem; margin-bottom: 1rem; }
+    footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #e5e5e5; font-size: 0.95rem; color: #444; }
+  </style>
+</head>
+<body>
+  <nav class="nav"><a href="../">← 创作数据速览</a></nav>
+  <article>
+    <h1>12 个节点 14 条边：长篇关系不崩靠知识图谱，不是人设备忘录</h1>
+    <p class="meta">妙笔生花 · 知识图谱教案⑤ · 节点数 / 边数为<strong>教案示意</strong>，非产品指标</p>
+<figure><img src="cover.png" alt="封面：知识图谱而非人设备忘录" loading="lazy"><figcaption>封面：知识图谱而非人设备忘录</figcaption></figure>
+<blockquote>
+<p>写崩关系之前，先看见关系。</p>
+<p>—— 妙笔生花 · 知识图谱教案口径</p>
+</blockquote>
+<p>长篇写到后半，读者常比作者更清楚谁和谁有过节、某件道具在谁手里、某次重逢牵动哪些旧线。人设卡写得再细，也常只是一叠彼此没有连线的卡片。</p>
+<p>妙笔生花用可交互的知识图谱教案演示这件事：把虚构示例《雾城列车》的人物、道具、地点与事件画成一张网——点任何节点，关系一眼摊开。下文节点数、边数与摘句均为<strong>教案示意</strong>，只讲机制，不是用户作品实测，也不等于产品性能指标。</p>
+<p>阅读顺序：</p>
+<ol>
+<li>先看一张网里有什么：12 个节点、14 条关系、4 类对象</li>
+<li>再点开林晚，看 7 条边如何把「档案」变成「关系」</li>
+<li>弄清为什么道具和事件也必须是节点</li>
+<li>看自动挂边如何与 RAG 共用检索（轻点接口，不复述检索五步）</li>
+<li>对照四种关系写崩模式，做自检</li>
+</ol>
+<figure><img src="fig-graph-overview.png" alt="《雾城列车》关系网总览" loading="lazy"><figcaption>《雾城列车》关系网总览</figcaption></figure>
+<h2>人设表能记人，却接不住关系网</h2>
+<p>人物表通常最先填满：姓名、身份、性格、经历。写到中段再补地点、道具、事件。资料有用，但默认仍是<strong>并列的卡片</strong>。</p>
+<p>林晚的人设卡可以写得很清楚：主角，夜班检车员，七年前父亲失踪后留在雾城北站。只看这张卡，作者知道她是谁，却不能立刻回答：</p>
+<ul>
+<li>她和老张现在是什么工作关系？</li>
+<li>怀表是否仍由她持有？</li>
+<li>「未拆的信」处在什么状态？</li>
+<li>铁皮饭盒经过怎样的转交？</li>
+<li>「第 57 章重逢」现场有谁在场？</li>
+</ul>
+<p>答案若全靠翻设定、搜章节、凭印象拼接，关系越多越费时。常见翻车不是「完全没写过」，而是<strong>写过，却看不见连接</strong>。</p>
+<p>知识图谱补的是连接层：节点可按人物 / 道具 / 地点 / 事件筛选，边带关系类型，点节点看关系。人设表回答「是谁」；图谱还要回答「和谁、凭什么、此刻怎样连着」。</p>
+<h2>一张网看什么：12 · 14 · 4</h2>
+<p>教案《雾城列车》最小样本给出三个结构计数（均为示意）：</p>
+<div class="table-wrap"><table>
+<tr><th>计数</th><th>含义</th></tr>
+<tr><td><strong>12 个节点</strong></td><td>可识别、可追踪的对象</td></tr>
+<tr><td><strong>14 条关系</strong></td><td>连接两个节点的边</td></tr>
+<tr><td><strong>关系类型 4 类</strong></td><td>筛选与理解边的语义维度（页面按人物 / 道具 / 地点 / 事件做类型筛选）</td></tr>
+</table></div>
+<p>公开演示里能直接点到的节点名包括：林晚、父亲、老张、站长、白衣乘客、怀表、铁皮饭盒、站长的账本、未拆的信、雾城北站、七年前失踪、第 57 章重逢。关系谓词示例有：父女、同事、持有、未拆、转交、守夜、留下、当事人、在场、值班、驻守、保管、出现在等。</p>
+<p>重点不在背表，而在用法：<strong>先筛选类型，再点节点摊开边</strong>。不必把十二个名字同时装进工作记忆，沿当前章节碰到的对象往外读一层即可。</p>
+<h2>点开林晚：七条边一眼摊开</h2>
+<p>教案给林晚标了 <strong>关系（7）</strong>。点开后出现的不是小传，而是七条可核对的边：</p>
+<figure><img src="fig-linwan-edges.png" alt="点开林晚：七条边一眼摊开" loading="lazy"><figcaption>点开林晚：七条边一眼摊开</figcaption></figure>
+<div class="table-wrap"><table>
+<tr><th>关系</th><th>对象</th><th>续写时立刻用得上的信息</th></tr>
+<tr><td>父女</td><td>父亲</td><td>亲缘主线仍在场，不是背景一句带过</td></tr>
+<tr><td>同事</td><td>老张</td><td>值班对话、交接班有既有协作基础</td></tr>
+<tr><td>持有</td><td>怀表</td><td>道具可进入动作与情绪，所有权清楚</td></tr>
+<tr><td>未拆</td><td>未拆的信</td><td>状态本身是戏剧压力：拆或不拆都要付代价</td></tr>
+<tr><td>转交</td><td>铁皮饭盒</td><td>流转关系：东西怎么到她手上、还会交给谁</td></tr>
+<tr><td>守夜</td><td>雾城北站</td><td>空间锚点：她为何「应该」出现在北站夜班</td></tr>
+<tr><td>在场</td><td>第 57 章重逢</td><td>事件锚点：重逢现场她是当事人之一</td></tr>
+</table></div>
+<p>它可与伏笔教案里的「第 57 章回收」对接，但职责不同：伏笔时间线回答<strong>一条线是否仍欠读者答案</strong>；知识图谱回答<strong>重逢事件节点上谁与什么连着</strong>。一个管呼吸长度，一个管结构邻接，两套视图不宜互相替代。</p>
+<p>人物卡展开的是一份档案；点开人物展开的是一段关系网络。</p>
+<h2>为什么道具和事件也必须是节点</h2>
+<p>如果只做「谁认识谁」的社交图，不过是通讯录升级版。长篇更容易崩在人物如何通过<strong>道具、地点、事件</strong>发生联系。</p>
+<figure><img src="fig-node-types.png" alt="四类节点：人物·道具·地点·事件" loading="lazy"><figcaption>四类节点：人物·道具·地点·事件</figcaption></figure>
+<p><strong>人物</strong>提供行动者与称谓稳定性（林晚、父亲、老张、站长、白衣乘客）。若把所有信息塞进人物小传，道具和事件就无法独立追踪。</p>
+<p><strong>道具</strong>保存所有权、流转与状态。怀表对应「持有」；未拆的信把「未拆」写成可查询的状态，而不是形容词；铁皮饭盒强调「转交」；站长的账本提示保管与职责。人物关系没变，道具状态可能已变——只记「林晚认识老张」，仍不知道饭盒在谁手里。</p>
+<p><strong>地点</strong>提供空间锚点。雾城北站既是守夜地点，也是许多动作的默认舞台。没有地点节点，「她值夜班」只是设定句；有了「守夜 → 雾城北站」，续写时才好检查人物该不该出现在这里。</p>
+<p><strong>事件</strong>提供时间与多方汇合点。「七年前失踪」把父亲线钉在可引用的事件节点上；「第 57 章重逢」让在场人物与相关道具挂到同一汇合点。没有事件节点，人物往往只剩静态「认识」；有了事件节点，同一夜、同一现场才能清点。</p>
+<p>一句话收束：</p>
+<blockquote>
+<p>人物提供行动者，道具提供状态载体，地点提供空间锚点，事件提供时间与因果汇合点。</p>
+</blockquote>
+<h2>自动挂边：新角色入场，网就长出一条边</h2>
+<p>人工维护关系网当然可以；但每写一章都重抄节点表，很快又会变成没人愿意碰的台账。教案对应的客户端能力是：创作过程中持续维护项目知识图谱——<strong>新人物、新道具、新事件写入时自动挂边</strong>，并<strong>与 RAG 记忆库共用一套检索</strong>。</p>
+<figure><img src="fig-auto-edge-rag.png" alt="自动挂边与 RAG 共用检索" loading="lazy"><figcaption>自动挂边与 RAG 共用检索</figcaption></figure>
+<p>自动挂边要对付的是「正文已写出关系，图谱还停在上周」。白衣乘客入场，不应只多一张人设卡，而应立刻挂上他与车站、某次出现或某件道具的边；否则后文再写他，只能靠搜旧文碰运气。</p>
+<p>与 RAG 的接口可以想成分工，而不是互相吞并：</p>
+<ul>
+<li><strong>图谱</strong>：结构邻接——谁和谁有边、边是什么类型、节点属哪一类；</li>
+<li><strong>RAG 记忆库</strong>：证据召回——续写时注入相关原文与设定片段。</li>
+</ul>
+<p>图谱指出该看哪些邻居；记忆库取出相关正文依据。RAG 教案里的检索五步此处不展开；只需记住：<strong>共用检索，不等于把图当成又一个向量垃圾桶</strong>。图要可筛选、可点开；记忆要可引用、可归档。</p>
+<p>手感上的变化通常是：写新角色少一次「回头补设定」；写重逢与道具交接时先看邻接再开写，假关系会更早暴露。</p>
+<h2>四种关系写崩模式</h2>
+<p>下面四种模式，方便写崩前对号入座。</p>
+<h3>1. 假边</h3>
+<p>正文只出现过并肩站台，图谱却标成「父女」「同盟」之类强关系。读者会觉得「怎么突然这么亲」，因为边类型超过了正文证据。</p>
+<p><strong>对策</strong>：边类型跟正文可核对的动作走；证据不足就用更弱的谓词，或标待确认，不要先堆戏剧性标签。</p>
+<h3>2. 孤儿节点</h3>
+<p>新建了「站长的账本」「白衣乘客」，却没有任何边。节点在列表里，续写时仍像不存在。</p>
+<p><strong>对策</strong>：新节点入场至少要有<strong>一条边</strong>；自动挂边要解决的就是「建了卡、没入网」。</p>
+<h3>3. 类型混用</h3>
+<p>把「未拆」写成人物性格，把「第 57 章重逢」只当章节标题而不做事件节点，或把地点写进人设备注永不升格。筛选一失效，就只剩全文搜索。</p>
+<p><strong>对策</strong>：人物 / 道具 / 地点 / 事件各归其类；状态类信息优先挂在道具或事件上。</p>
+<h3>4. 只建卡不挂边</h3>
+<p>最像人设备忘录的失败：资料很多，网是空的。世界看起来丰富，真正写作时仍靠记性。</p>
+<p><strong>对策</strong>：把「可见的边」当成健康指标——不是边越多越好，而是关键对象被点开时不应空白。</p>
+<h2>作者自检清单（可直接贴进项目笔记）</h2>
+<ol>
+<li>当前卷活跃的主要人物，点开后是否至少能看到与主线相关的边？</li>
+<li>关键道具是否有独立节点，且持有 / 转交 / 保管 / 未拆等状态可查？</li>
+<li>即将写的重逢或冲突，是否已有（或应有）事件节点，而不是只靠章节号？</li>
+<li>新角色入场后，是否在正文写出关系的同时完成挂边，而不是留到「有空再补设定」？</li>
+<li>续写前：先看图谱邻接，再让 RAG 取证据——两者是否分工清楚？</li>
+</ol>
+<h2>结语</h2>
+<p>长篇后半比的不是谁的人设字段更全，而是关系结构是否仍可导航。12 个节点、14 条边只是教案里的最小标本：演示「先看见关系」，不是炫耀一张巨图。</p>
+<p>把通讯录升级成可筛选的网，让新角色入场就挂边，并与记忆检索共用入口——写崩关系的概率会下降。原因通常不是模型突然更聪明，而是作者能看见自己写过的连接。</p>
+<p>继续阅读：</p>
+<ul>
+<li>知识图谱教案：https://wordflower.cn/methodology/knowledge-graph</li>
+<li>妙笔生花：https://wordflower.cn</li>
+</ul>
+  </article>
+  <footer>
+    <p>继续阅读：<a href="https://wordflower.cn/methodology/knowledge-graph" rel="noopener">知识图谱教案</a> · <a href="https://wordflower.cn" rel="noopener">妙笔生花 wordflower.cn</a></p>
+    <p><a href="../">返回创作数据速览首页</a></p>
+  </footer>
+</body>
+</html>
